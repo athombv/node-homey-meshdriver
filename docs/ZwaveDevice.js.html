@@ -1,4 +1,32 @@
-'use strict';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ZwaveDevice.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ZwaveDevice.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
 
 const MeshDevice = require('../MeshDevice.js');
 
@@ -14,12 +42,9 @@ const SYSTEM_CAPABILITIES = [
 class ZwaveDevice extends MeshDevice {
 
 	/*
-	 *	Homey methods
+		Homey methods
 	*/
 	
-	/**
-	 * @private
-	 */
 	onInit() {
 		super.onInit('zwave');
 		
@@ -31,13 +56,75 @@ class ZwaveDevice extends MeshDevice {
 		
 		this.once('__meshInit', () => {
 			this.log('ZwaveDevice has been inited');
-			this.onMeshInit && this.onMeshInit();
+			this.onMeshInit &amp;&amp; this.onMeshInit();
 		});
+	}
+	
+	printNode() {
+		this.log('------------------------------------------');
+
+		// log the entire Node
+		this.log('Node:', this.getData().token);
+		this.log('- Battery:', this.node.battery);
+
+		Object.keys(this.node.CommandClass).forEach(commandClassId => {
+			this.log('- CommandClass:', commandClassId);
+			this.log('-- Version:', this.node.CommandClass[commandClassId].version);
+			this.log('-- Commands:');
+
+			Object.keys(this.node.CommandClass[commandClassId]).forEach(key => {
+				if (typeof this.node.CommandClass[commandClassId][key] === 'function' &amp;&amp; key === key.toUpperCase()) {
+					this.log('---', key);
+				}
+			});
+		});
+
+		if (this.node.MultiChannelNodes) {
+			Object.keys(this.node.MultiChannelNodes).forEach(multiChannelNodeId => {
+				this.log('- MultiChannelNode:', multiChannelNodeId);
+
+				Object.keys(this.node.MultiChannelNodes[multiChannelNodeId].CommandClass).forEach(commandClassId => {
+					this.log('-- CommandClass:', commandClassId);
+					this.log('--- Version:',
+						this.node.MultiChannelNodes[multiChannelNodeId].CommandClass[commandClassId].version);
+					this.log('--- Commands:');
+
+					Object
+						.keys(this.node.MultiChannelNodes[multiChannelNodeId].CommandClass[commandClassId])
+						.forEach(key => {
+							if (typeof this.node.MultiChannelNodes[multiChannelNodeId].CommandClass[commandClassId][key]
+								=== 'function' &amp;&amp; key === key.toUpperCase()) {
+								this.log('----', key);
+							}
+						});
+				});
+			});
+		}
+
+		this.log('------------------------------------------');
+		this.log('');
+
+		Object.keys(this.node.CommandClass).forEach(commandClassId => {
+			this.node.CommandClass[commandClassId].on('report', function () {
+				this.log(`node.CommandClass['${commandClassId}'].on('report')`, 'arguments:', arguments);
+			}.bind(this));
+		});
+
+		if (this.node.MultiChannelNodes) {
+			Object.keys(this.node.MultiChannelNodes).forEach(multiChannelNodeId => {
+				Object.keys(this.node.MultiChannelNodes[multiChannelNodeId].CommandClass).forEach(commandClassId => {
+					this.node.MultiChannelNodes[multiChannelNodeId].CommandClass[commandClassId].on('report', function () {
+						this.log(`node.MultiChannelNodes['${multiChannelNodeId}'].
+						CommandClass['${commandClassId}'].on('report')`, 'arguments:', arguments);
+					}.bind(this));
+				});
+			});
+		}
 	}
 	
 	onSettings( oldSettings, newSettings, changedKeysArr ) {
 		
-		for( let i = 0; i < changedKeysArr.length; i++ ) {
+		for( let i = 0; i &lt; changedKeysArr.length; i++ ) {
 			let changedKey = changedKeysArr[i];
 			let newValue = newSettings[changedKey];
 			
@@ -53,8 +140,8 @@ class ZwaveDevice extends MeshDevice {
 			
 			let manifestSetting;
 			let manifest = this.getDriver().getManifest();
-			if( manifest && manifest.settings ) {
-				for( let j = 0; j < manifest.settings.length; j++ ) {
+			if( manifest &amp;&amp; manifest.settings ) {
+				for( let j = 0; j &lt; manifest.settings.length; j++ ) {
 					let setting = manifest.settings[j];
 					if( setting.id !== changedKey ) continue;
 					manifestSetting = setting.zwave;
@@ -136,8 +223,8 @@ class ZwaveDevice extends MeshDevice {
 		
 		// get initial value on start if null, unless it's an offline battery device and the getOnWakeUp flag is also set
 		if( capabilityGetObj.opts.getOnStart
-		 && this.getCapabilityValue( capabilityId ) === null
-		 && !(this.node.battery && this.node.online === false && capabilityGetObj.opts.getOnWakeUp === true) ) {
+		 &amp;&amp; this.getCapabilityValue( capabilityId ) === null
+		 &amp;&amp; !(this.node.battery &amp;&amp; this.node.online === false &amp;&amp; capabilityGetObj.opts.getOnWakeUp === true) ) {
 			this._getCapabilityValue( capabilityId, commandClassId );
 		}
 		
@@ -177,7 +264,7 @@ class ZwaveDevice extends MeshDevice {
 		if( this._pollIntervals[ capabilityId ][ commandClassId ] )
 			clearInterval(this._pollIntervals[ capabilityId ][ commandClassId ]);
 			
-		if( pollInterval < 1 ) return;
+		if( pollInterval &lt; 1 ) return;
 		
 		this._pollIntervals[ capabilityId ][ commandClassId ] = setInterval(() => {
 			this._debug(`Polling commandClassId '${commandClassId}' for capabilityId '${capabilityId}'`);
@@ -252,7 +339,7 @@ class ZwaveDevice extends MeshDevice {
 			if( parsedPayload instanceof Error ) return;
 			
 			if( this._reportListeners[ commandClassId ]
-			 && this._reportListeners[ commandClassId ][ command.name ] ) {
+			 &amp;&amp; this._reportListeners[ commandClassId ][ command.name ] ) {
 				 this._reportListeners[ commandClassId ][ command.name ]( payload, parsedPayload );
 			 }
 		});
@@ -315,35 +402,16 @@ class ZwaveDevice extends MeshDevice {
 	}
 	
 	/*
-	 * Public methods
-	 */
+		Public methods
+	*/
 	
-	/**
-	 * Register a Homey Capability with a Command Class.
-	 * @param {string} capabilityId - The Homey capability id (e.g. `onoff`)
-	 * @param {string} commandClassId - The command class id (e.g. `BASIC`)
-	 * @param {Object} userOpts
-	 * @param {String} userOpts.get - The command to get a value (e.g. `BASIC_GET`)
-	 * @param {String} userOpts.getParser - The function that is called when a GET request is made. Should return an Object.
-	 * @param {Object} userOpts.getOpts
-	 * @param {Boolean} userOpts.getOpts.getOnStart - Get the value on App start
-	 * @param {Boolean} userOpts.getOpts.getOnOnline - Get the value when the device is marked as online
-	 * @param {Number|String} userOpts.getOpts.pollInterval - Interval to poll with a GET request. When provided a string, the device's setting with the string as ID will be used (e.g. `poll_interval`)
-	 * @param {String} userOpts.set - The command to set a value (e.g. `BASIC_SET`)
-	 * @param {Function} userOpts.setParser - The function that is called when a SET request is made. Should return an Object.
-	 * @param {Mixed} userOpts.setParser.value - The value of the Homey capability
-	 * @param {Object} userOpts.setParser.opts - Options for the capability command
-	 * @param {String} userOpts.report - The command to report a value (e.g. `BASIC_REPORT`)
-	 * @param {Function} userOpts.reportParser - The function that is called when a REPORT request is made. Should return an Object.
-	 * @param {Object} userOpts.reportParser.report - The report object
-	 */
 	registerCapability( capabilityId, commandClassId, userOpts ) {
 		
 		// register the Z-Wave capability listener
 		this._capabilities[ capabilityId ] = this._capabilities[ capabilityId ] || {};
 		this._capabilities[ capabilityId ][ commandClassId ] = this._capabilities[ capabilityId ][ commandClassId ] || {};
 		
-		// merge systemOpts & userOpts
+		// merge systemOpts &amp; userOpts
 		let systemOpts = {};
 		try {
 			systemOpts = require(`./system/capabilities/${capabilityId}/${commandClassId}.js`);
@@ -366,14 +434,6 @@ class ZwaveDevice extends MeshDevice {
 		this._registerCapabilityGet( capabilityId, commandClassId );
 	}
 	
-	
-	/**
-	 * Register a setting parser, which is called when a setting has changed.
-	 * @param {string} settingId - The setting ID, as specified in `/app.json`
-	 * @param {Function} parserFn - The parser function, must return a Buffer
-	 * @param {Mixed} parserFn.value - The setting value
-	 * @param {Mixed} parserFn.zwaveObj - The setting's `zwave` object as defined in `/app.json`
-	 */
 	registerSetting( settingId, parserFn ) {
 		this._settings[ settingId ] = parserFn;
 	}
@@ -383,72 +443,28 @@ class ZwaveDevice extends MeshDevice {
 		this._reportListeners[ commandClassId ][ commandId ] = triggerFn;
 	}
 	
-	
-	/**
-	 * Print the current Node information with Command Classes and their versions
-	 */
-	printNode() {
-		this.log('------------------------------------------');
-
-		// log the entire Node
-		this.log('Node:', this.getData().token);
-		this.log('- Battery:', this.node.battery);
-
-		Object.keys(this.node.CommandClass).forEach(commandClassId => {
-			this.log('- CommandClass:', commandClassId);
-			this.log('-- Version:', this.node.CommandClass[commandClassId].version);
-			this.log('-- Commands:');
-
-			Object.keys(this.node.CommandClass[commandClassId]).forEach(key => {
-				if (typeof this.node.CommandClass[commandClassId][key] === 'function' && key === key.toUpperCase()) {
-					this.log('---', key);
-				}
-			});
-		});
-
-		if (this.node.MultiChannelNodes) {
-			Object.keys(this.node.MultiChannelNodes).forEach(multiChannelNodeId => {
-				this.log('- MultiChannelNode:', multiChannelNodeId);
-
-				Object.keys(this.node.MultiChannelNodes[multiChannelNodeId].CommandClass).forEach(commandClassId => {
-					this.log('-- CommandClass:', commandClassId);
-					this.log('--- Version:',
-						this.node.MultiChannelNodes[multiChannelNodeId].CommandClass[commandClassId].version);
-					this.log('--- Commands:');
-
-					Object
-						.keys(this.node.MultiChannelNodes[multiChannelNodeId].CommandClass[commandClassId])
-						.forEach(key => {
-							if (typeof this.node.MultiChannelNodes[multiChannelNodeId].CommandClass[commandClassId][key]
-								=== 'function' && key === key.toUpperCase()) {
-								this.log('----', key);
-							}
-						});
-				});
-			});
-		}
-
-		this.log('------------------------------------------');
-		this.log('');
-
-		Object.keys(this.node.CommandClass).forEach(commandClassId => {
-			this.node.CommandClass[commandClassId].on('report', function () {
-				this.log(`node.CommandClass['${commandClassId}'].on('report')`, 'arguments:', arguments);
-			}.bind(this));
-		});
-
-		if (this.node.MultiChannelNodes) {
-			Object.keys(this.node.MultiChannelNodes).forEach(multiChannelNodeId => {
-				Object.keys(this.node.MultiChannelNodes[multiChannelNodeId].CommandClass).forEach(commandClassId => {
-					this.node.MultiChannelNodes[multiChannelNodeId].CommandClass[commandClassId].on('report', function () {
-						this.log(`node.MultiChannelNodes['${multiChannelNodeId}'].
-						CommandClass['${commandClassId}'].on('report')`, 'arguments:', arguments);
-					}.bind(this));
-				});
-			});
-		}
-	}
-	
 }
 
-module.exports = ZwaveDevice;
+module.exports = ZwaveDevice;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ZwaveDevice.html">ZwaveDevice</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.0</a> on Mon Jul 10 2017 18:57:48 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
