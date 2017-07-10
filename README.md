@@ -12,7 +12,7 @@ $ npm install homey-meshdriver
 ```
 
 ## Usage
-See [examples/fibaroplug.js]()
+See [examples/fibaroplug.js](examples/fibaroplug.js)
 
 ## Docs
-See [https://athombv.github.io/node-homey-meshdriver]()
+See [https://athombv.github.io/node-homey-meshdriver](https://athombv.github.io/node-homey-meshdriver)
