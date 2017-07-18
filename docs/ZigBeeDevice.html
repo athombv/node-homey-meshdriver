@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ZwaveDevice</title>
+    <title>JSDoc: Class: ZigBeeDevice</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ZwaveDevice</h1>
+    <h1 class="page-title">Class: ZigBeeDevice</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ZwaveDevice<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ZigBeeDevice<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="ZwaveDevice"><span class="type-signature"></span>new ZwaveDevice<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ZigBeeDevice"><span class="type-signature"></span>new ZigBeeDevice<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -415,7 +415,7 @@
 
 
 <div class="description">
-    <p>Print the current Node information with Command Classes and their versions</p>
+    <p>Print the current Node information with Endpoints and Clusters</p>
 </div>
 
 
@@ -488,7 +488,7 @@
     
 
     
-    <h4 class="name" id="registerCapability"><span class="type-signature"></span>registerCapability<span class="signature">(capabilityId, commandClassId, opts<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="registerCapability"><span class="type-signature"></span>registerCapability<span class="signature">(capabilityId, clusterId, userOpts<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
     
 
     
@@ -496,7 +496,7 @@
 
 
 <div class="description">
-    <p>Register a Homey Capability with a Command Class.</p>
+    <p>Register a Homey Capability with a Cluster.</p>
 </div>
 
 
@@ -565,7 +565,7 @@
 
         <tr>
             
-                <td class="name"><code>commandClassId</code></td>
+                <td class="name"><code>clusterId</code></td>
             
 
             <td class="type">
@@ -589,14 +589,14 @@
 
             
 
-            <td class="description last"><p>The command class id (e.g. <code>BASIC</code>)</p></td>
+            <td class="description last"><p>The Cluster id (e.g. <code>genBasic</code>)</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>opts</code></td>
+                <td class="name"><code>userOpts</code></td>
             
 
             <td class="type">
@@ -622,7 +622,7 @@
 
             
 
-            <td class="description last"><p>The object with options for this capability/commandclass combination. These will extend system options, if available (<code>/lib/zwave/system/</code>)</p>
+            <td class="description last"><p>The object with options for this capability/cluster combination. These will extend system options, if available (<code>/lib/zigbee/system/</code>)</p>
                 <h6>Properties</h6>
                 
 
@@ -640,6 +640,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -656,7 +658,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -675,8 +677,12 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>The command to get a value (e.g. <code>BASIC_GET</code>)</p></td>
+            <td class="description last"><p>The command to get a value (e.g. <code>onOff</code>)</p></td>
         </tr>
 
     
@@ -689,7 +695,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -707,6 +713,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>The function that is called when a GET request is made. Should return an Object.</p></td>
@@ -738,6 +748,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">
@@ -843,7 +857,7 @@
 <span class="param-type">Number</span>
 |
 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -883,7 +897,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -902,8 +916,12 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>The command to set a value (e.g. <code>BASIC_SET</code>)</p></td>
+            <td class="description last"><p>The command to set a value (e.g. <code>on</code>)</p></td>
         </tr>
 
     
@@ -934,6 +952,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>The function that is called when a SET request is made. Should return an Object.</p>
@@ -970,7 +992,7 @@
             <td class="type">
             
                 
-<span class="param-type">Mixed</span>
+<span class="param-type">*</span>
 
 
             
@@ -1043,7 +1065,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -1062,8 +1084,12 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>The command to report a value (e.g. <code>BASIC_REPORT</code>)</p></td>
+            <td class="description last"><p>The command to report a value (e.g. <code>onOff</code>)</p></td>
         </tr>
 
     
@@ -1094,6 +1120,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>The function that is called when a REPORT request is made. Should return an Object.</p>
@@ -1164,13 +1194,13 @@
 
         <tr>
             
-                <td class="name"><code>multiChannelNodeId</code></td>
+                <td class="name"><code>endpoint</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">number</span>
 
 
             
@@ -1189,8 +1219,14 @@
             
 
             
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
 
-            <td class="description last"><p>An ID to use a MultiChannel Node for this capability</p></td>
+            <td class="description last"><p>An index to identify the endpoint to use for this capability</p></td>
         </tr>
 
     
@@ -1267,7 +1303,7 @@
     
 
     
-    <h4 class="name" id="registerReportListener"><span class="type-signature"></span>registerReportListener<span class="signature">(commandClassId, commandId, triggerFn)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="registerReportListener"><span class="type-signature"></span>registerReportListener<span class="signature">(clusterId, commandId, triggerFn, endpointId<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1299,7 +1335,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -1311,7 +1351,7 @@
 
         <tr>
             
-                <td class="name"><code>commandClassId</code></td>
+                <td class="name"><code>clusterId</code></td>
             
 
             <td class="type">
@@ -1324,10 +1364,22 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"><p>The ID of the Command Class (e.g. <code>BASIC</code>)</p></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The ID of the Cluser (e.g. <code>genBasic</code>)</p></td>
         </tr>
 
     
@@ -1347,10 +1399,22 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"><p>The ID of the Command (e.g. <code>BASIC_REPORT</code>)</p></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The ID of the Command (e.g. <code>onOff</code>)</p></td>
         </tr>
 
     
@@ -1370,7 +1434,19 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">
@@ -1449,228 +1525,42 @@
         </tr>
 
     
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="registerSetting"><span class="type-signature"></span>registerSetting<span class="signature">(settingId, parserFn)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Register a setting parser, which is called when a setting has changed.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
 
         <tr>
             
-                <td class="name"><code>settingId</code></td>
+                <td class="name"><code>endpointId</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">number</span>
 
 
             
             </td>
 
             
-
-            
-
-            <td class="description last"><p>The setting ID, as specified in <code>/app.json</code></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>parserFn</code></td>
-            
-
-            <td class="type">
-            
+                <td class="attributes">
                 
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The parser function, must return a Buffer</p>
-                <h6>Properties</h6>
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
                 
-<span class="param-type">Mixed</span>
 
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The setting value</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>zwaveObj</code></td>
-            
-
-            <td class="type">
-            
                 
-<span class="param-type">Mixed</span>
-
-
-            
-            </td>
-
+                </td>
             
 
             
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
 
-            <td class="description last"><p>The setting's <code>zwave</code> object as defined in <code>/app.json</code></p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"><p>The endpoint index (e.g. 0)</p></td>
         </tr>
 
     
