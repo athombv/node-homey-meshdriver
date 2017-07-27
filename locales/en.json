@@ -1,0 +1,6 @@
+{
+  "error": {
+    "invalid_ieeeaddr": "Device not found in network",
+    "unknown": "Unknown error"
+  }
+}
