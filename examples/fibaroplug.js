@@ -19,6 +19,9 @@ class FibaroPlugDevice extends ZwaveDevice {
 				getOnStart: true, // get the initial value on app start
 				pollInterval: 'poll_interval' // maps to device settings
 				// getOnWakeUp: true, // only useful for battery devices
+			},
+			getParserV3: ( value, opts ) => {
+				return {};
 			}
 		});
 		
