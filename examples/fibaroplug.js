@@ -8,7 +8,7 @@ class FibaroPlugDevice extends ZwaveDevice {
 	onMeshInit() {
 		
 		// enable debugging
-		this.setDebug( true );
+		this.enableDebug();
 		
 		// print the node's info to the console
 		this.printNode();
