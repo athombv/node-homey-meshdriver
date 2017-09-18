@@ -1,10 +1,11 @@
 {
   "name": "homey-meshdriver",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "updateDocs": "npm install --only=dev; grunt jsdoc"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +13,12 @@
     "grunt": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-jsdoc": "^2.1.0"
+  },
+  "config": {
+    "npmPublishTagProduction": "latest",
+    "npmPublishTagStaging": "beta"
+  },
+  "dependencies": {
+    "color-space": "^1.14.7"
   }
 }
