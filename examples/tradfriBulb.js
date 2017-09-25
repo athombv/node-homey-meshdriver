@@ -30,6 +30,27 @@ class DimmableBulb extends ZigBeeDevice {
 		this.registerReportListener('genLevelCtrl', 'move', report => {
 			console.log(report);
 		});
+
+		// Register attr report listener
+		this.registerAttrReportListener(
+			'genPowerCfg', // Cluster
+			'batteryPercentageRemaining', // Attr
+			10, // Min report interval in seconds (must be greater than 1)
+			60, // Max report interval in seconds (must be zero or greater than 60 and greater than min report interval)
+			1, // Report change value, if value changed more than this value send a report
+			this.onPowerCfgBatteryPercentageRemainingReport.bind(this)) // Callback with value
+				.then(() => {
+					// Registering attr reporting succeeded
+					this.log('registered attr report listener');
+				})
+				.catch(err => {
+					// Registering attr reporting failed
+					this.error('failed to register attr report listener', err);
+				});
+	}
+
+	onPowerCfgBatteryPercentageRemainingReport(value) {
+		this.log('onPowerCfgBatteryPercentageRemainingReport', value);
 	}
 }
 
