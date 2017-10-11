@@ -19,6 +19,7 @@
     "npmPublishTagStaging": "beta"
   },
   "dependencies": {
-    "color-space": "^1.14.7"
+    "color-space": "^1.14.7",
+    "fs-extra": "^4.0.2"
   }
 }
