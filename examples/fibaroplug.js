@@ -1,8 +1,13 @@
 'use strict';
 
-const Homey = require('homey');
 const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
 
+/**
+ * It is possible to use default system capability handlers (see: lib/zwave/system/capabilities), by registering a
+ * capability without an options object (see below). There are also various standard ZwaveDevice implementations (see:
+ * lib/zwave), some of them use settings and flow cards (which are optional) and can be found in
+ * lib/system/(flows|settings).json.
+ */
 class FibaroPlugDevice extends ZwaveDevice {
 	
 	onMeshInit() {
@@ -12,13 +17,18 @@ class FibaroPlugDevice extends ZwaveDevice {
 		
 		// print the node's info to the console
 		this.printNode();
+
+		// register the `measure_battery` capability with COMMAND_CLASS_BATTERY and with the
+		// default system capability handler (see: lib/zwave/system/capabilities)
+		this.registerCapability('measure_battery', 'BATTERY');
 		
-		// register the `onoff` capability with COMMAND_CLASS_SWITCH_BINARY
+		// register the `onoff` capability with COMMAND_CLASS_SWITCH_BINARY while overriding the default system
+		// capability handler
 		this.registerCapability('onoff', 'SWITCH_BINARY', {
 			getOpts: {
-				getOnStart: true, // get the initial value on app start
+				getOnStart: true, // get the initial value on app start (only use for non-battery devices)
 				pollInterval: 'poll_interval' // maps to device settings
-				// getOnWakeUp: true, // only useful for battery devices
+				// getOnOnline: true, // use only for battery devices
 			},
 			getParserV3: ( value, opts ) => {
 				return {};
