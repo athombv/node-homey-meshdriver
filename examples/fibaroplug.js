@@ -51,7 +51,15 @@ class FibaroPlugDevice extends ZwaveDevice {
 		// Or set configuration value that is not defined in manifest
 		await this.configurationSet({index: 1, size: 2}, 10);
 	}
-	
+
+	// Overwrite the default setting save message
+	customSaveMessage(oldSettings, newSettings, changedKeysArr) {
+		return {
+			en: "Test message",
+			nl: "Test bericht"
+		}
+	}
+
 	// Overwrite the onSettings method, and change the Promise result
 	onSettings( oldSettings, newSettings, changedKeysArr ) {
 		return super.onSettings(oldSettings, newSettings, changedKeysArr)
