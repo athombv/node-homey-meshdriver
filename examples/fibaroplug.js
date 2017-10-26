@@ -10,7 +10,7 @@ const ZwaveDevice = require('homey-meshdriver').ZwaveDevice;
  */
 class FibaroPlugDevice extends ZwaveDevice {
 	
-	onMeshInit() {
+	async onMeshInit() {
 		
 		// enable debugging
 		this.enableDebug();
@@ -44,9 +44,22 @@ class FibaroPlugDevice extends ZwaveDevice {
 		this.registerReportListener('SWITCH_BINARY', 'SWITCH_BINARY_REPORT', ( rawReport, parsedReport ) => {
 			console.log('registerReportListener', rawReport, parsedReport);
 		});
-		
+
+		// Set configuration value that is defined in manifest
+		await this.configurationSet({id: 'motion_threshold'}, 10);
+
+		// Or set configuration value that is not defined in manifest
+		await this.configurationSet({index: 1, size: 2}, 10);
 	}
-	
+
+	// Overwrite the default setting save message
+	customSaveMessage(oldSettings, newSettings, changedKeysArr) {
+		return {
+			en: "Test message",
+			nl: "Test bericht"
+		}
+	}
+
 	// Overwrite the onSettings method, and change the Promise result
 	onSettings( oldSettings, newSettings, changedKeysArr ) {
 		return super.onSettings(oldSettings, newSettings, changedKeysArr)
