@@ -12,7 +12,11 @@ $ npm install homey-meshdriver
 ```
 
 ## Usage
+
+### Z-Wave
 See [examples/fibaroplug.js](examples/fibaroplug.js) and [examples/fibaroplug.json](examples/fibaroplug.json)
+
+### Zigbee
 See [examples/tradfriBulb.js](examples/tradfriBulb.js) and [examples/tradfriBulb.json](examples/tradfriBulb.json)
 
 
