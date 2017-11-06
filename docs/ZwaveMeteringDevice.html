@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ZwaveDevice</title>
+    <title>JSDoc: Class: ZwaveMeteringDevice</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ZwaveDevice</h1>
+    <h1 class="page-title">Class: ZwaveMeteringDevice</h1>
 
     
 
@@ -28,7 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ZwaveDevice<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ZwaveMeteringDevice<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>The ZwaveMeteringDevice class has built-in functionality for the METER_RESET FlowCardAction.</p></div>
         
     
 </header>
@@ -39,9 +41,11 @@
         
 
     
+    <h2>Constructor</h2>
+    
 
     
-    <h4 class="name" id="ZwaveDevice"><span class="type-signature"></span>new ZwaveDevice<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ZwaveMeteringDevice"><span class="type-signature"></span>new ZwaveMeteringDevice<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -111,6 +115,45 @@
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// device.js
+const ZwaveMeteringDevice = require('homey-meshdriver').ZwaveMeteringDevice;
+
+class myDevice extends ZwaveMeteringDevice {
+
+ async onMeshInit() {
+     await super.onMeshInit();
+     this.registerCapability('measure_power', 'METER');
+     this.registerCapability('meter_power', 'METER');
+ }
+}
+
+// app.json (or see zwave/system/flows.json)
+flow: {
+     actions: [
+         {
+             "id": "resetMeter",
+             "title": {
+                 "en": "Reset meter values",
+                 "nl": "Meter waarden opnieuw instellen"
+             },
+             "hint": {
+                 "en": "Reset the accumulated power usage value (kWh), note that this can not be reversed.",
+                 "nl": "Stel geaccumuleerde stroomverbruik waarde (kWh) opnieuw in, dit kan niet worden teruggedraaid."
+             },
+             "args": [
+                 {
+                     "name": "device",
+                     "type": "device",
+                     "filter": "&lt;driver_id>"
+                 }
+             ]
+         }
+     ]
+}</code></pre>
+
+
 
     
     </div>
@@ -122,7 +165,7 @@
 
 
     <ul>
-        <li><a href="MeshDevice.html">MeshDevice</a></li>
+        <li><a href="ZwaveDevice.html">ZwaveDevice</a></li>
     </ul>
 
 
@@ -396,6 +439,11 @@ system parser before sending. It will only be able to use the registered setting
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#configurationSet">ZwaveDevice#configurationSet</a>
+    </li></ul></dd>
     
 
     
@@ -712,6 +760,11 @@ system parser before sending. It will only be able to use the registered setting
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#getManifestSetting">ZwaveDevice#getManifestSetting</a>
+    </li></ul></dd>
+    
 
     
 
@@ -813,6 +866,11 @@ system parser before sending. It will only be able to use the registered setting
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#getManifestSettings">ZwaveDevice#getManifestSettings</a>
+    </li></ul></dd>
     
 
     
@@ -961,6 +1019,11 @@ system parser before sending. It will only be able to use the registered setting
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#hasCommandClass">ZwaveDevice#hasCommandClass</a>
+    </li></ul></dd>
     
 
     
@@ -1229,6 +1292,11 @@ of concatenated error messages (to see which settings failed if more than one).<
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#onSettings">ZwaveDevice#onSettings</a>
+    </li></ul></dd>
+    
 
     
 
@@ -1327,6 +1395,11 @@ of concatenated error messages (to see which settings failed if more than one).<
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#printNode">ZwaveDevice#printNode</a>
+    </li></ul></dd>
     
 
     
@@ -2108,6 +2181,11 @@ Multiple <code>parser</code> methods can be provided by appending a version, e.g
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#registerCapability">ZwaveDevice#registerCapability</a>
+    </li></ul></dd>
+    
 
     
 
@@ -2333,6 +2411,11 @@ Multiple <code>parser</code> methods can be provided by appending a version, e.g
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#registerReportListener">ZwaveDevice#registerReportListener</a>
+    </li></ul></dd>
+    
 
     
 
@@ -2557,6 +2640,11 @@ Multiple <code>parser</code> methods can be provided by appending a version, e.g
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#registerSetting">ZwaveDevice#registerSetting</a>
+    </li></ul></dd>
     
 
     
