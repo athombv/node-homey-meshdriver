@@ -3,6 +3,7 @@
 module.exports.Util = require('./lib/util');
 
 module.exports.ZwaveDevice = require('./lib/zwave/ZwaveDevice.js');
+module.exports.ZwaveLightDevice = require('./lib/zwave/ZwaveLightDevice.js');
 module.exports.ZwaveLockDevice = require('./lib/zwave/ZwaveLockDevice.js');
 module.exports.ZwaveMeteringDevice = require('./lib/zwave/ZwaveMeteringDevice.js');
 
