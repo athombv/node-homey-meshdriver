@@ -1,13 +1,13 @@
 'use strict';
 
-const ZwaveDevice = require('homey-meshdriver').ZigBeeDevice;
+const { ZigBeeDevice } = require('homey-meshdriver');
 
-class MyDevice extends ZigBeeDevice {
+class MyZigBeeDevice extends ZigBeeDevice {
 	
 	onMeshInit() {
-		this.log('MyDevice has been inited');
+		this.log('MyZigBeeDevice has been inited');
 	}
 	
 }
 
-module.exports = MyDevice;
+module.exports = MyZigBeeDevice;
