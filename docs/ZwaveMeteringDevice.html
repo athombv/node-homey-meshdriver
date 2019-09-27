@@ -168,6 +168,229 @@ class myDevice extends ZwaveMeteringDevice {
     
 
     
+    <h4 class="name" id="_setCapabilityValue"><span class="type-signature">(async) </span>_setCapabilityValue<span class="signature">(capabilityId, commandClassId, value, opts)</span><span class="type-signature"> &rarr; {Promise.&lt;(string|*)>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>This method executes the capability set command for a given capability/commandClass combination. The capability
+and commandClass must be registered before this method is called.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>capabilityId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>commandClassId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Mixed</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the capability value to set (e.g 0 - 1 for dim)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>capability options object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#_setCapabilityValue">ZwaveDevice#_setCapabilityValue</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(string|*)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="configurationGet"><span class="type-signature">(async) </span>configurationGet<span class="signature">(options)</span><span class="type-signature"> &rarr; {*}</span></h4>
     
 
@@ -818,7 +1041,7 @@ system parser before sending. It will only be able to use the registered setting
 
 
 <div class="description">
-    <p>Enable debugging to the console</p>
+    <p>Enable debug logging on this device. Logs all incoming reports.</p>
 </div>
 
 
@@ -842,7 +1065,7 @@ system parser before sending. It will only be able to use the registered setting
     
     <dt class="inherited-from">Inherited From:</dt>
     <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="MeshDevice.html#enableDebug">MeshDevice#enableDebug</a>
+        <a href="ZwaveDevice.html#enableDebug">ZwaveDevice#enableDebug</a>
     </li></ul></dd>
     
 
@@ -885,6 +1108,461 @@ system parser before sending. It will only be able to use the registered setting
 
 
 
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="executeCapabilitySetCommand"><span class="type-signature">(async) </span>executeCapabilitySetCommand<span class="signature">(capabilityId, commandClassId, value, opts)</span><span class="type-signature"> &rarr; {Promise.&lt;(string|*)>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>This method executes the capability set command for a given capability/commandClass combination. The capability
+and commandClass must be registered before this method is called.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>capabilityId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>commandClassId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Mixed</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the capability value to set (e.g 0 - 1 for dim)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>capability options object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#executeCapabilitySetCommand">ZwaveDevice#executeCapabilitySetCommand</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(string|*)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getCommandClass"><span class="type-signature"></span>getCommandClass<span class="signature">(commandClassId, opts)</span><span class="type-signature"> &rarr; {Error|boolean|*}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Method that gets a CommandClass object by commandClassId. Optionally, it can get the object on a multichannel node
+if the multiChannelNodeId is provided.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>commandClassId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>multiChannelNodeId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide this id if the command class should be located on a mc node.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#getCommandClass">ZwaveDevice#getCommandClass</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Error</span>
+|
+
+<span class="param-type">boolean</span>
+|
+
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1151,7 +1829,160 @@ system parser before sending. It will only be able to use the registered setting
     
 
     
-    <h4 class="name" id="hasCommandClass"><span class="type-signature"></span>hasCommandClass<span class="signature">(commandClassId)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="getMultiChannelNodeIdsByDeviceClassGeneric"><span class="type-signature"></span>getMultiChannelNodeIdsByDeviceClassGeneric<span class="signature">(deviceClassGeneric)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Method that gets all multi channel node ids that have a specific deviceClassGeneric.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>deviceClassGeneric</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#getMultiChannelNodeIdsByDeviceClassGeneric">ZwaveDevice#getMultiChannelNodeIdsByDeviceClassGeneric</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="hasCommandClass"><span class="type-signature"></span>hasCommandClass<span class="signature">(commandClassId, opts)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -1212,6 +2043,78 @@ system parser before sending. It will only be able to use the registered setting
             
 
             <td class="description last"><p>For example: SWITCH_BINARY</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>multiChannelNodeId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Multi channel node id to check for command class</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1287,6 +2190,155 @@ system parser before sending. It will only be able to use the registered setting
     <dd>
         
 <span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="meterReset"><span class="type-signature">(async) </span>meterReset<span class="signature">(multiChannelNodeId)</span><span class="type-signature"> &rarr; {Promise.&lt;unknown>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Method that resets the accumulated power meter value on the node. It tries to find the root node of the device
+and then looks for the COMMAND_CLASS_METER.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>multiChannelNodeId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>define the multi channel node id in case the COMMAND_CLASS_METER is on a multi channel node</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="ZwaveDevice.html#meterReset">ZwaveDevice#meterReset</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;unknown></span>
 
 
     </dd>
@@ -1662,7 +2714,7 @@ of concatenated error messages (to see which settings failed if more than one).<
     
 
     
-    <h4 class="name" id="refreshCapabilityValue"><span class="type-signature"></span>refreshCapabilityValue<span class="signature">(capabilityId,, commandClassId,)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="refreshCapabilityValue"><span class="type-signature">(async) </span>refreshCapabilityValue<span class="signature">(capabilityId,, commandClassId,)</span><span class="type-signature"> &rarr; {Promise.&lt;unknown>}</span></h4>
     
 
     
@@ -1810,6 +2862,24 @@ the parameter getOpts.pollInterval at <a href="ZwaveDevice.html#registerCapabili
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;unknown></span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -3616,13 +4686,13 @@ Multiple <code>parser</code> methods can be provided by appending a version, e.g
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MeshDevice.html">MeshDevice</a></li><li><a href="Util.html">Util</a></li><li><a href="ZigBeeDevice.html">ZigBeeDevice</a></li><li><a href="ZwaveDevice.html">ZwaveDevice</a></li><li><a href="ZwaveLockDevice.html">ZwaveLockDevice</a></li><li><a href="ZwaveMeteringDevice.html">ZwaveMeteringDevice</a></li></ul><h3>Global</h3><ul><li><a href="global.html#calculateZwaveDimDuration">calculateZwaveDimDuration</a></li><li><a href="global.html#determineAndSaveState">determineAndSaveState</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MeshDevice.html">MeshDevice</a></li><li><a href="Util.html">Util</a></li><li><a href="ZigBeeDevice.html">ZigBeeDevice</a></li><li><a href="ZwaveDevice.html">ZwaveDevice</a></li><li><a href="ZwaveLightDevice.html">ZwaveLightDevice</a></li><li><a href="ZwaveLockDevice.html">ZwaveLockDevice</a></li><li><a href="ZwaveMeteringDevice.html">ZwaveMeteringDevice</a></li></ul><h3>Global</h3><ul><li><a href="global.html#calculateZigBeeDimDuration">calculateZigBeeDimDuration</a></li><li><a href="global.html#calculateZwaveDimDuration">calculateZwaveDimDuration</a></li><li><a href="global.html#determineAndSaveState">determineAndSaveState</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 02 2018 12:06:49 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Sep 27 2019 12:17:37 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>
