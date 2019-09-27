@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ZwaveLockDevice</title>
+    <title>JSDoc: Class: ZwaveLightDevice</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ZwaveLockDevice</h1>
+    <h1 class="page-title">Class: ZwaveLightDevice</h1>
 
     
 
@@ -28,10 +28,17 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ZwaveLockDevice<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ZwaveLightDevice<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>The ZwaveLockDevice class has built-in functionality for the lockJammed FlowCardTrigger. Note: this FlowCardAction
-will only be triggered if the NOTIFICATION command class is registered for the 'locked' capability.</p></div>
+            <div class="class-description"><p>ZwaveLightDevice takes care of all commands used by XY Lighting devices (COMMAND_CLASS_SWITCH_COLOR).
+Set the capabilitiesOptions &quot;setOnDim&quot; to false for the onoff capability</p>
+<p>Duration(s) can be given for:</p>
+<ul>
+<li>dim (SWITCH_MULTILEVEL &gt;= V2)</li>
+<li>light_hue (SWITCH_COLOR &gt;= V2)</li>
+<li>light_saturation (SWITCH_COLOR &gt;= V2)</li>
+<li>light_temperature (SWITCH_COLOR &gt;= V2)</li>
+</ul></div>
         
     
 </header>
@@ -46,7 +53,7 @@ will only be triggered if the NOTIFICATION command class is registered for the '
     
 
     
-    <h4 class="name" id="ZwaveLockDevice"><span class="type-signature"></span>new ZwaveLockDevice<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ZwaveLightDevice"><span class="type-signature"></span>new ZwaveLightDevice<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -118,42 +125,52 @@ will only be triggered if the NOTIFICATION command class is registered for the '
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// device.js
-const ZwaveLockDevice = require('homey-meshdriver').ZwaveLockDevice;
-
-class myDevice extends ZwaveLockDevice {
-
- async onMeshInit() {
-     await super.onMeshInit();
-     this.registerCapability('locked', 'DOOR_LOCK');
-     this.registerCapability('locked', 'NOTIFICATION');
-     this.registerCapability('measure_battery', 'BATTERY');
- }
+    <pre class="prettyprint"><code>// app.json
+{
+	"id": YOUR_APP_ID,
+	...
+	"drivers": [
+		{
+			"id": "YOUR_DRIVER_ID",
+			"capabilitiesOptions": {
+				"onoff": {
+					"setOnDim": false
+				},
+				"dim": {
+					"opts": {
+						"duration": true
+					}
+				},
+				"light_hue": {
+					"opts": {
+						"duration": true
+					}
+				},
+				"light_saturation": {
+					"opts": {
+						"duration": true
+					}
+				},
+				"light_temperature": {
+					"opts": {
+						"duration": true
+					}
+				}
+			}
+	]
 }
 
-// app.json (or see zwave/system/flows.json)
-flow: {
-     triggers: [
-         {
-             "id": "lockJammed",
-             "title": {
-                 "en": "The lock is jammed",
-                 "nl": "Het slot is geblokkeerd"
-             },
-             "hint": {
-                 "en": "While trying to close the lock something obstructed the lock from closing completely.",
-                 "nl": "Tijdens het sluiten van het slot blokkeerde er iets waardoor het slot niet kon worden gesloten."
-             },
-             "args": [
-                 {
-                     "name": "device",
-                     "type": "device",
-                     "filter": "&lt;driver_id>"
-                 }
-             ]
-         }
-     ]
-}</code></pre>
+// device.js
+const ZwaveLightDevice = require('homey-meshdriver').ZwaveLightDevice;
+
+class myDevice extends ZwaveLightDevice {
+
+	async onMeshInit() {
+
+		await super.onMeshInit();
+		// YOUR CODE COMES HERE
+		}
+	}</code></pre>
 
 
 
