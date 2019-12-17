@@ -8,7 +8,7 @@
     "updateDocs": "npm install --only=dev; grunt jsdoc"
   },
   "engines": {
-    "node": "8"
+    "node": ">=8"
   },
   "author": "",
   "license": "ISC",
