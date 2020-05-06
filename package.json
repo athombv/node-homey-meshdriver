@@ -1,7 +1,7 @@
 {
   "name": "homey-meshdriver",
   "version": "1.3.23",
-  "description": "",
+  "description": "Use this module to make the creation of Z-Wave & ZigBee Homey Apps easier.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
   "engines": {
     "node": ">=8"
   },
-  "author": "",
+  "author": "Athom B.V.",
   "license": "ISC",
   "devDependencies": {
     "grunt": "^1.0.1",
@@ -23,5 +23,18 @@
   },
   "dependencies": {
     "color-space": "^1.14.7"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/athombv/node-homey-meshdriver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/athombv/node-homey-meshdriver/issues"
+  },
+  "homepage": "https://github.com/athombv/node-homey-meshdriver#readme"
 }
