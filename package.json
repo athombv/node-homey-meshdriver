@@ -1,6 +1,6 @@
 {
   "name": "homey-meshdriver",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Use this module to make the creation of Z-Wave & ZigBee Homey Apps easier.",
   "main": "index.js",
   "scripts": {
